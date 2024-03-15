@@ -1,54 +1,57 @@
 import {Link} from 'react-router-dom'
-import {BsFillStarFill} from 'react-icons/bs'
-import {GoLocation} from 'react-icons/go'
-import {FaSuitcase} from 'react-icons/fa'
+import {BsFillBriefcaseFill, BsStarFill} from 'react-icons/bs'
+import {MdLocationOn} from 'react-icons/md'
 import './index.css'
 
 const JobCard = props => {
-  const {details} = props
+  const {jobData} = props
   const {
-    id,
     companyLogoUrl,
     employmentType,
     jobDescription,
     location,
     packagePerAnnum,
-    title,
     rating,
-  } = details
-
+    title,
+    id,
+  } = jobData
   return (
-    <Link to={`/jobs/${id}`} className="job-item-link">
+    <Link to={`/jobs/${id}`} className="link-item">
       <li className="job-item">
-        <div className="company-brand">
-          <img className="company-logo" src={companyLogoUrl} alt={id} />
-          <div>
-            <h1 className="company-title">{title}</h1>
-            <div className="rating-sec">
-              <BsFillStarFill className="star" />
-              <p>{rating}</p>
+        <div className="logo-title-location-container">
+          <div className="logo-title-container">
+            <img
+              src={companyLogoUrl}
+              alt="company logo"
+              className="company-logo"
+            />
+            <div className="title-rating-container">
+              <h1 className="title-heading">{title}</h1>
+              <div className="rating-container">
+                <BsStarFill className="rating-icon" />
+                <p className="rating-heading">{rating}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="section-2">
-          <div className="section-3">
-            <div className="section-21">
-              <GoLocation />
-              <p className="icon-label">{location}</p>
+          <div className="location-package-container">
+            <div className="location-employee-container">
+              <div className="location-container">
+                <MdLocationOn className="location-icon" />
+                <p className="location-heading">{location}</p>
+              </div>
+              <div className="employee-type-container">
+                <BsFillBriefcaseFill className="brief-case-icon" />
+                <p className="employee-type-heading">{employmentType}</p>
+              </div>
             </div>
-            <div className="section-21">
-              <FaSuitcase />
-              <p className="icon-label">{employmentType}</p>
-            </div>
+            <p className="package-heading">{packagePerAnnum}</p>
           </div>
-          <p>{packagePerAnnum}</p>
         </div>
-        <hr className="hr" />
-        <h1>Description</h1>
-        <p>{jobDescription}</p>
+        <hr className="line" />
+        <h1 className="description-heading">Description</h1>
+        <p className="description-text">{jobDescription}</p>
       </li>
     </Link>
   )
 }
-
 export default JobCard

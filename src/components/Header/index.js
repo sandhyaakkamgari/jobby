@@ -1,9 +1,9 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import {Link, withRouter} from 'react-router-dom'
-import {AiFillHome} from 'react-icons/ai'
-import {FiLogOut} from 'react-icons/fi'
-import {FaSuitcase} from 'react-icons/fa'
 import Cookies from 'js-cookie'
-
+import {FiLogOut} from 'react-icons/fi'
+import {AiFillHome} from 'react-icons/ai'
+import {BsFillBriefcaseFill} from 'react-icons/bs'
 import './index.css'
 
 const Header = props => {
@@ -13,53 +13,75 @@ const Header = props => {
     history.replace('/login')
   }
   return (
-    <nav className="navbar">
-      <div className="mobile-view">
-        <Link to="/">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-            alt="website logo"
-            className="header-logo"
-          />
-        </Link>
-        <div className="icons">
-          <Link to="/">
-            <AiFillHome className="home-icon" />
-          </Link>
-          <Link to="/jobs">
-            <FaSuitcase className="home-icon" />
-          </Link>
-          <FiLogOut className="home-icon" onClick={onClickLogout} />
-        </div>
-      </div>
+    <>
+      <nav className="nav-header">
+        <div className="nav-content">
+          <div className="nav-bar-mobile-container">
+            <Link to="/">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
+                className="website-logo"
+                alt="website logo"
+              />
+            </Link>
+            <ul className="nav-bar-mobile-icons-container">
+              <li>
+                <Link to="/">
+                  <AiFillHome className="nav-item-mobile-link" />
+                </Link>
+              </li>
+              <li>
+                <Link to="/jobs">
+                  <BsFillBriefcaseFill className="nav-item-mobile-link" />
+                </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="nav-mobile-btn"
+                  onClick={onClickLogout}
+                >
+                  <FiLogOut />
+                </button>
+              </li>
+            </ul>
+          </div>
 
-      <div className="desktop-view">
-        <Link to="/">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-            alt="website logo"
-            className="header-logo"
-          />
-        </Link>
-        <ul className="icons-2">
-          <Link to="/" className="link-item">
-            <li>Home</li>
-          </Link>
-          <Link to="/jobs" className="link-item">
-            <li>Jobs</li>
-          </Link>
-          <li>
-            <button
-              className="logout-btn"
-              type="button"
-              onClick={onClickLogout}
-            >
-              Logout
-            </button>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          <div className="nav-bar-large-container">
+            <Link to="/">
+              <img
+                className="website-logo"
+                src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+                alt="website logo"
+              />
+            </Link>
+            <ul className="nav-menu">
+              <li className="nav-menu-item">
+                <Link to="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+
+              <li className="nav-menu-item">
+                <Link to="/jobs" className="nav-link">
+                  Jobs
+                </Link>
+              </li>
+            </ul>
+            <div className="large-device-button-container">
+              <button
+                type="button"
+                className="logout-desktop-btn"
+                onClick={onClickLogout}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </>
   )
 }
+
 export default withRouter(Header)
